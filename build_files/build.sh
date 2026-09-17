@@ -13,7 +13,17 @@ cp -avf "/ctx/system_files"/. /
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux
+dnf -y up
+dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf -y swap ffmpeg-free ffmpeg --allowerasing
+dnf -y install mesa-va-drivers-freeworld
+dnf -y swap mesa-vulkan-drivers{,-freeworld}
+
+# install google-chrome
+dnf -y install fedora-workstation-repositories
+dnf config-manager setopt google-chrome.enabled=1
+dnf -y install google-chrome-stable
+
 
 # Use a COPR Example:
 #
