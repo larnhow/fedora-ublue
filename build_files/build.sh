@@ -24,6 +24,10 @@ dnf -y install fedora-workstation-repositories
 dnf config-manager setopt google-chrome.enabled=1
 dnf -y install google-chrome-stable
 
+# install packages
+dnf -y install distrobox steamdevices chezmoi keepassxc
+dnf -y remove toolbox
+
 
 # Use a COPR Example:
 #
@@ -31,6 +35,9 @@ dnf -y install google-chrome-stable
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
+
+# clean dnf cache
+dnf -y clean
 
 #### Example for enabling a System Unit File
 
