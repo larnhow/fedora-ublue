@@ -26,7 +26,7 @@ dnf -y install google-chrome-stable
 
 # install packages
 dnf -y install distrobox steamdevices chezmoi keepassxc
-dnf -y remove toolbox
+# dnf -y remove toolbox
 
 
 # Use a COPR Example:
