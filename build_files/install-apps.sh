@@ -15,15 +15,14 @@ declare -A RPM_PACKAGES=(
     distrobox \
     ffmpegthumbnailer \
     fish \
-    flatpak \
     foot \
-    nautilus \
     niri \
-    papers-thumbnailer \
     steam-devices \
     "
 
   ["google-chrome"]="google-chrome-stable"
+
+  # ["vscode"]="code"
 )
 
 log "Starting larnhows OS build process"
