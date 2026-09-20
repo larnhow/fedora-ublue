@@ -14,7 +14,9 @@ COPY system_files /system_files
 # Universal Blue Images: https://github.com/orgs/ublue-os/packages
 # Fedora base image: quay.io/fedora/fedora-bootc:44
 # CentOS base images: quay.io/centos-bootc/centos-bootc:stream10
-FROM quay.io/fedora/fedora-kinoite:44
+# FROM quay.io/fedora/fedora-kinoite:44
+FROM quay.io/fedora/fedora-silverblue:44
+# FROM quay.io/fedora/fedora-bootc:44
 
 
 ### [IM]MUTABLE /opt
@@ -26,7 +28,7 @@ FROM quay.io/fedora/fedora-kinoite:44
 ## Uncomment the following line if one desires to make /opt immutable and be able to be used
 ## by the package manager.
 
-RUN rm /opt && mkdir /opt
+# RUN rm /opt && mkdir /opt
 
 ### MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script

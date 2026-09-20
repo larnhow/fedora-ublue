@@ -3,7 +3,57 @@
 set -ouex pipefail
 
 # Copy the contents of system_files/ of the git repo to /
+
+log() {
+  echo "=== $* ==="
+}
+
+# RPM packages list
+declare -A RPM_PACKAGES=(
+  ["fedora"]="\
+    cascadia-mono-nf-fonts \
+    distrobox \
+    ffmpegthumbnailer \
+    fish \
+    flatpak \
+    foot \
+    nautilus \
+    niri \
+    papers-thumbnailer \
+    steam-devices \
+    "
+
+  ["google-chrome"]="google-chrome-stable"
+)
+
+log "Starting larnhows OS build process"
+
 cp -avf "/ctx/system_files"/. /
+mkdir -p /var/opt
+dnf -y up
+
+log "Installing RPM packages"
+
+for repo in "${!RPM_PACKAGES[@]}"; do
+  read -ra pkg_array <<<"${RPM_PACKAGES[$repo]}"
+  if [[ $repo == copr:* ]]; then
+    # Handle COPR packages
+    copr_repo=${repo#copr:}
+    dnf5 -y copr enable "$copr_repo"
+    dnf5 -y install "${pkg_array[@]}"
+    dnf5 -y copr disable "$copr_repo"
+  else
+    # Handle regular packages
+    [[ $repo != "fedora" ]] && enable_opt="--enable-repo=$repo" || enable_opt=""
+    cmd=(dnf5 -y install)
+    [[ -n "$enable_opt" ]] && cmd+=("$enable_opt")
+    cmd+=("${pkg_array[@]}")
+    "${cmd[@]}"
+  fi
+done
+
+log "Build process completed"
+
 
 ### Install packages
 
@@ -13,21 +63,13 @@ cp -avf "/ctx/system_files"/. /
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf -y up
 dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 dnf -y swap ffmpeg-free ffmpeg --allowerasing
 dnf -y install mesa-va-drivers-freeworld
 dnf -y swap mesa-vulkan-drivers{,-freeworld}
 
-# install google-chrome
-dnf -y install fedora-workstation-repositories
-dnf config-manager setopt google-chrome.enabled=1
-dnf -y install google-chrome-stable
-
-# install packages
-dnf -y install distrobox steam-devices cascadia-mono-nf-fonts
-dnf -y remove toolbox
-
+# uninstall packages
+dnf -y remove toolbox ptyxis
 
 # Use a COPR Example:
 #
