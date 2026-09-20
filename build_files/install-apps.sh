@@ -12,6 +12,7 @@ log() {
 declare -A RPM_PACKAGES=(
   ["fedora"]="\
     cascadia-mono-nf-fonts \
+    chezmoi \
     distrobox \
     ffmpegthumbnailer \
     fish \
