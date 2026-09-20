@@ -19,6 +19,7 @@ declare -A RPM_PACKAGES=(
     fish \
     flatpak \
     foot \
+    gamescope \
     gdm \
     jq \
     just \
