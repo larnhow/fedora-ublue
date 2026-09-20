@@ -13,21 +13,30 @@ declare -A RPM_PACKAGES=(
   ["fedora"]="\
     cascadia-mono-nf-fonts \
     chezmoi \
+    dnf-plugins-core \
     distrobox \
     ffmpegthumbnailer \
     fish \
+    flatpak \
     foot \
-    just \
+    gdm \
     jq \
-    podman \
+    just \
+    keepassxc \
     nautilus \
     niri \
     noctalia \
-    steam-devices \
     papers-thumbnailer \
+    podman \
+    steam \
+    steam-devices \
     "
 
   ["google-chrome"]="google-chrome-stable"
+
+  ["copr:jdxcode/mise"]="mise"
+
+  ["copr:faugus/faugus-launcher"]="faugus-launcher"
 
   # ["vscode"]="code"
 )
@@ -40,18 +49,20 @@ dnf -y up
 
 log "Installing RPM packages"
 
+dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
 for repo in "${!RPM_PACKAGES[@]}"; do
   read -ra pkg_array <<<"${RPM_PACKAGES[$repo]}"
   if [[ $repo == copr:* ]]; then
     # Handle COPR packages
     copr_repo=${repo#copr:}
-    dnf5 -y copr enable "$copr_repo"
-    dnf5 -y install "${pkg_array[@]}"
-    dnf5 -y copr disable "$copr_repo"
+    dnf -y copr enable "$copr_repo"
+    dnf -y install "${pkg_array[@]}"
+    dnf -y copr disable "$copr_repo"
   else
     # Handle regular packages
     [[ $repo != "fedora" ]] && enable_opt="--enable-repo=$repo" || enable_opt=""
-    cmd=(dnf5 -y install)
+    cmd=(dnf -y install)
     [[ -n "$enable_opt" ]] && cmd+=("$enable_opt")
     cmd+=("${pkg_array[@]}")
     "${cmd[@]}"
@@ -69,14 +80,18 @@ log "Build process completed"
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 dnf -y swap ffmpeg-free ffmpeg --allowerasing
 dnf -y install mesa-va-drivers-freeworld
 dnf -y swap mesa-vulkan-drivers{,-freeworld}
 
-dnf -y copr enable jdxcode/mise
-dnf -y install mise
-dnf -y copr disable jdxcode/mise
+
+# dnf -y copr enable jdxcode/mise
+# dnf -y install mise
+# dnf -y copr disable jdxcode/mise
+
+# dnf -y copr enable faugus/faugus-launcher
+# dnf -y install faugus-launcher
+# dnf -y copr disable faugus/faugus-launcher
 
 
 # uninstall packages
@@ -92,3 +107,4 @@ dnf -y remove toolbox ptyxis
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+systemctl enable gdm.service
