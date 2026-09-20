@@ -23,6 +23,8 @@ declare -A RPM_PACKAGES=(
     jq \
     just \
     keepassxc \
+    mpv \
+    mpv-mpris \
     nautilus \
     niri \
     noctalia \
