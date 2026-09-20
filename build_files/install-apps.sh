@@ -17,9 +17,14 @@ declare -A RPM_PACKAGES=(
     ffmpegthumbnailer \
     fish \
     foot \
+    just \
+    jq \
+    podman \
+    nautilus \
     niri \
     noctalia \
     steam-devices \
+    papers-thumbnailer \
     "
 
   ["google-chrome"]="google-chrome-stable"
@@ -68,6 +73,11 @@ dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 dnf -y swap ffmpeg-free ffmpeg --allowerasing
 dnf -y install mesa-va-drivers-freeworld
 dnf -y swap mesa-vulkan-drivers{,-freeworld}
+
+dnf -y copr enable jdxcode/mise
+dnf -y install mise
+dnf -y copr disable jdxcode/mise
+
 
 # uninstall packages
 dnf -y remove toolbox ptyxis
