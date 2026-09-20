@@ -17,6 +17,7 @@ declare -A RPM_PACKAGES=(
     fish \
     foot \
     niri \
+    noctalia \
     steam-devices \
     "
 
