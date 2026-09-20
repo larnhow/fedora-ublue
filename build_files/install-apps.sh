@@ -46,6 +46,8 @@ log "Starting larnhows OS build process"
 cp -avf "/ctx/system_files"/. /
 mkdir -p /var/opt
 dnf -y up
+dnf5 -y install 'dnf5-command(copr)'
+
 
 log "Installing RPM packages"
 
