@@ -101,4 +101,3 @@ dnf -y remove toolbox ptyxis
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
-systemctl enable gdm.service
