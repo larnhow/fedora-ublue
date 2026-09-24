@@ -13,23 +13,12 @@ declare -A RPM_PACKAGES=(
   ["fedora"]="\
     cascadia-mono-nf-fonts \
     chezmoi \
-    dnf-plugins-core \
     distrobox \
-    ffmpegthumbnailer \
     fish \
-    flatpak \
-    foot \
-    gamescope \
-    gdm \
     jq \
     just \
     keepassxc \
     mpv \
-    mpv-mpris \
-    nautilus \
-    niri \
-    noctalia \
-    papers-thumbnailer \
     podman \
     steam \
     steam-devices \
