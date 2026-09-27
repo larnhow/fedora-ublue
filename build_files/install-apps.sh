@@ -19,6 +19,8 @@ declare -A RPM_PACKAGES=(
     just \
     keepassxc \
     mpv \
+    nix \
+    nix-daemon \
     podman \
     steam \
     steam-devices \
@@ -101,3 +103,4 @@ dnf -y remove toolbox ptyxis
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+systemctl enable nix-daemon
