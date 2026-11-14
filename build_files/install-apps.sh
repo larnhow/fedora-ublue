@@ -47,7 +47,19 @@ declare -A RPM_PACKAGES=(
     playerctl \
     mise \
     brave-browser \
-    brightnessctl
+    gvfs-smb \
+    gvfs-nfs \
+    gvfs-fuse \
+    greetd \
+    greetd-selinux \
+    tuigreet \
+    brightnessctl \
+    dbus \
+    polkit \
+    xdg-user-dirs \
+    blueman \
+    pavucontrol \
+    xdg-utils
     "
 
 #  ["google-chrome"]="google-chrome-stable"
