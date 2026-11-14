@@ -45,6 +45,8 @@ declare -A RPM_PACKAGES=(
     slurp \
     wl-clipboard \
     playerctl \
+    mise \
+    brave-browser \
     brightnessctl
     "
 
