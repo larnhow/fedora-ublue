@@ -20,11 +20,32 @@ declare -A RPM_PACKAGES=(
     keepassxc \
     podman \
     steam-devices \
-    niri \
     firefox \
     systemd-container \
     git \
     glibc-langpack-de \
+    nautilus \
+    flatpak \
+    niri \
+    xwayland-satellite \
+    waybar \
+    rofi \
+    mako \
+    swaybg \
+    swayidle \
+    swaylock \
+    lxqt-policykit \
+    libnotify \
+    gnome-keyring \
+    gnome-keyring-pam \
+    xdg-desktop-portal \
+    xdg-desktop-portal-gtk \
+    xdg-desktop-portal-gnome \
+    grim \
+    slurp \
+    wl-clipboard \
+    playerctl \
+    brightnessctl \  
     "
 
 #  ["google-chrome"]="google-chrome-stable"
