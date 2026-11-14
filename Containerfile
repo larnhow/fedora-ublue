@@ -15,8 +15,8 @@ COPY system_files /system_files
 # Fedora base image: quay.io/fedora/fedora-bootc:44
 # CentOS base images: quay.io/centos-bootc/centos-bootc:stream10
 # FROM quay.io/fedora/fedora-kinoite:45
-FROM quay.io/fedora/fedora-silverblue:45
-#FROM quay.io/fedora/fedora-bootc:45
+#FROM quay.io/fedora/fedora-silverblue:45
+FROM quay.io/fedora/fedora-bootc:45
 
 
 ### [IM]MUTABLE /opt
