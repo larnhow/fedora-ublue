@@ -45,7 +45,7 @@ declare -A RPM_PACKAGES=(
     slurp \
     wl-clipboard \
     playerctl \
-    brightnessctl \  
+    brightnessctl
     "
 
 #  ["google-chrome"]="google-chrome-stable"
