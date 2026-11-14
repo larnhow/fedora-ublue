@@ -18,11 +18,7 @@ declare -A RPM_PACKAGES=(
     jq \
     just \
     keepassxc \
- #   mpv \
-#    nix \
-#    nix-daemon \
     podman \
-#    steam \
     steam-devices \
     niri \
     firefox \
