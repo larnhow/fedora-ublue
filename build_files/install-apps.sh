@@ -23,6 +23,8 @@ declare -A RPM_PACKAGES=(
     niri \
     firefox \
     systemd-container \
+    git \
+    glibc-langpack-de \
     "
 
 #  ["google-chrome"]="google-chrome-stable"
@@ -85,6 +87,9 @@ log "Build process completed"
 # dnf -y copr enable faugus/faugus-launcher
 # dnf -y install faugus-launcher
 # dnf -y copr disable faugus/faugus-launcher
+
+systemctl disable kmsconvt@tty1.service
+systemctl enable getty@tty1.service
 
 
 # uninstall packages
