@@ -22,6 +22,7 @@ declare -A RPM_PACKAGES=(
     steam-devices \
     niri \
     firefox \
+    systemd-container \
     "
 
 #  ["google-chrome"]="google-chrome-stable"
