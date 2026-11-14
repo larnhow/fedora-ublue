@@ -18,19 +18,19 @@ declare -A RPM_PACKAGES=(
     jq \
     just \
     keepassxc \
-    mpv \
-    nix \
-    nix-daemon \
+ #   mpv \
+#    nix \
+#    nix-daemon \
     podman \
-    steam \
+#    steam \
     steam-devices \
+    niri \
+    firefox \
     "
 
-  ["google-chrome"]="google-chrome-stable"
-
-  ["copr:jdxcode/mise"]="mise"
-
-  ["copr:faugus/faugus-launcher"]="faugus-launcher"
+#  ["google-chrome"]="google-chrome-stable"
+ 
+  #["copr:faugus/faugus-launcher"]="faugus-launcher"
 
   # ["vscode"]="code"
 )
@@ -40,12 +40,12 @@ log "Starting larnhows OS build process"
 cp -avf "/ctx/system_files"/. /
 mkdir -p /var/opt
 dnf -y up
-dnf5 -y install 'dnf5-command(copr)'
+#dnf5 -y install 'dnf5-command(copr)'
 
 
-log "Installing RPM packages"
+#log "Installing RPM packages"
 
-dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+#dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 for repo in "${!RPM_PACKAGES[@]}"; do
   read -ra pkg_array <<<"${RPM_PACKAGES[$repo]}"
@@ -76,9 +76,9 @@ log "Build process completed"
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf -y swap ffmpeg-free ffmpeg --allowerasing
-dnf -y install mesa-va-drivers-freeworld
-dnf -y swap mesa-vulkan-drivers{,-freeworld}
+#dnf -y swap ffmpeg-free ffmpeg --allowerasing
+#dnf -y install mesa-va-drivers-freeworld
+#dnf -y swap mesa-vulkan-drivers{,-freeworld}
 
 
 # dnf -y copr enable jdxcode/mise
@@ -103,4 +103,4 @@ dnf -y remove toolbox ptyxis
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
-systemctl enable nix-daemon
+#systemctl enable nix-daemon
