@@ -36,6 +36,7 @@ declare -A RPM_PACKAGES=(
     swaylock \
     lxqt-policykit \
     libnotify \
+    gdm \
     gnome-keyring \
     gnome-keyring-pam \
     xdg-desktop-portal \

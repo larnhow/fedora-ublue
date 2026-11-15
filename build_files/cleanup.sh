@@ -27,7 +27,7 @@ mkdir -p /var/tmp
 chmod -R 1777 /var/tmp
 
 # Commit and lint container
-ostree container commit
+# ostree container commit
 bootc container lint
 
 log "Cleanup completed"
